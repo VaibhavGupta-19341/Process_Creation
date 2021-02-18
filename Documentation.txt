@@ -1,0 +1,55 @@
+﻿Working
+
+
+FILE pointer fp is used to open the file in read mode.
+fgets() is used to read the file one line at a time
+Each line is broken up into tokens using strtok
+The tokens are stored in local variables 
+The average of marks in various assignments is calculated and stored
+
+
+Printing Format:
+        Student_Id                 Section                 Average_marks
+
+
+The child process prints in this format for students in section A
+
+
+The parent process waits for the child to exit and then does the same procedure for students of Section B
+
+
+
+
+System Calls
+
+
+* fork()
+Fork system call is used for creating a new process, which is called a child process, which runs concurrently with the process that makes the fork() call (parent process). After a new child process is created, both processes will execute the next instruction following the fork() system call. A child process uses the same program counter, same CPU registers, same open files which are used in the parent process.
+
+
+It takes no parameters and returns an integer value. Below are different values returned by fork().
+Negative Value: creation of a child process was unsuccessful.
+Zero: Returned to the newly created child process.
+Positive value: Returned to parent or caller. The value contains the process ID of the newly created child process.
+
+
+* exit()
+It terminates the process normally.
+status: Status value returned to the parent process. Generally, a status value of 0 or EXIT_SUCCESS indicates success, and any other value or the constant EXIT_FAILURE is used to indicate an error. exit() performs following operations.
+* Flushes unwritten buffered data.
+* Closes all open files.
+* Removes temporary files.
+* Returns an integer exit status to the operating system.
+
+
+* waitpid()
+Syntax in c language:
+pid_t waitpid (child_pid, &status, options);
+
+
+Options Parameter
+
+
+If 0 - means no option, the parent has to wait for the child to terminate.
+If WNOHANG - means parent does not wait if child does not terminate just check and return waitpid().(not block parent process)
+If child_pid is -1-  then it means any arbitrarily child, here waitpid() work is the same as wait() work.
